@@ -27,7 +27,7 @@ router.get('/', (req, res, next) => {
 //  GET the Book Details page in order to add a new Book
 router.get('/add', (req, res, next) => {
 
-  res.render('../views/details', {title: 'Add Book'}) 
+  res.render('books/details', {title: 'Add Book'}) 
 
 });
 
@@ -35,7 +35,6 @@ router.get('/add', (req, res, next) => {
 router.post('/add', (req, res, next) => {
 
   let newBook = Book({
-    "_id": id,
     "Title": req.body.Title,
     "Description": req.body.Description,
     "Price": req.body.Price,
@@ -64,7 +63,7 @@ router.get('/:id', (req, res, next) => {
 
     let id = req.params.id;
 
-    Book.findById(id, (err, BookToEdit) => {
+    book.findById(id, (err, BookToEdit) => {
         if(err)
         {
             console.log(err);
@@ -73,7 +72,7 @@ router.get('/:id', (req, res, next) => {
         else
         {
             //show the edit view
-            res.render('../views/details', {title: 'Edit Book', book: BookToEdit})
+            res.render('books/details', {title: 'Edit Book', book: BookToEdit})
         }
     });
 
