@@ -27,14 +27,14 @@ router.get('/', (req, res, next) => {
 //  GET the Book Details page in order to add a new Book
 router.get('/add', (req, res, next) => {
 
-  res.render('../views/books/details', {title: 'Add Book'}) 
+  res.render('books/details', {title: 'Add Book', books:{}});
 
 });
 
 // POST process the Book Details page and create a new Book - CREATE
 router.post('/add', (req, res, next) => {
 
-  let newBook = Book({
+  let newBook = book({
     "Title": req.body.Title,
     "Description": req.body.Description,
     "Price": req.body.Price,
@@ -50,7 +50,7 @@ book.create(newBook, (err, Book) =>{
     }
     else
     {
-        // refresh the contact list
+        // refresh the book list
         res.redirect('/books');
     }
 
@@ -102,7 +102,7 @@ router.post('/:id', (req, res, next) => {
         }
         else
         {
-            // refresh the contact list
+            // refresh the book list
             res.redirect('/books');
         }
     });
@@ -115,7 +115,7 @@ router.get('/delete/:id', (req, res, next) => {
 
     let id = req.params.id;
 
-    Contact.remove({_id: id}, (err) => {
+    book.remove({_id: id}, (err) => {
         if(err)
         {
             console.log(err);
@@ -123,7 +123,7 @@ router.get('/delete/:id', (req, res, next) => {
         }
         else
         {
-             // refresh the contact list
+             // refresh the book list
              res.redirect('/books');
         }
     });
