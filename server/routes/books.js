@@ -27,7 +27,7 @@ router.get('/', (req, res, next) => {
 //  GET the Book Details page in order to add a new Book
 router.get('/add', (req, res, next) => {
 
-  res.render('/add', {title: 'Add Book'}) 
+  res.render('../views/details', {title: 'Add Book'}) 
 
 });
 
@@ -73,7 +73,7 @@ router.get('/:id', (req, res, next) => {
         else
         {
             //show the edit view
-            res.render('/edit', {title: 'Edit Book', book: BookToEdit})
+            res.render('../views/details', {title: 'Edit Book', book: BookToEdit})
         }
     });
 
@@ -95,7 +95,7 @@ router.post('/:id', (req, res, next) => {
 
     });
 
-    Contact.updateOne({_id: id}, updatedBook, (err) => {
+    book.updateOne({_id: id}, updatedBook, (err) => {
         if(err)
         {
             console.log(err);
