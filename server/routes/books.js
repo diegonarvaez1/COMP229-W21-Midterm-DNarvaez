@@ -34,7 +34,7 @@ router.get('/add', (req, res, next) => {
 // POST process the Book Details page and create a new Book - CREATE
 router.post('/add', (req, res, next) => {
 
-  let newBook = book({
+  let newBook = Book({
     "Title": req.body.Title,
     "Description": req.body.Description,
     "Price": req.body.Price,
